@@ -1,6 +1,5 @@
 package com.github.lingxi.cloud.admin.entity
 
-import com.github.lingxi.cloud.admin.const.DeletedEnum
 import com.github.lingxi.cloud.admin.entity.UserRoleLink.Companion.USER_ROLE_LINK_TABLE_NAME
 import javax.persistence.Column
 import javax.persistence.Table
@@ -15,8 +14,8 @@ import javax.persistence.Table
 @Table(name = USER_ROLE_LINK_TABLE_NAME)
 class UserRoleLink : Entity() {
 
-    @Column private var userId: Long
-    @Column private var roleId: Long
+    @Column private var userId: Long? = null
+    @Column private var roleId: Long? = null
 
     override fun toString(): String {
         return "${super.toString()} UserRoleLink(userId=$userId, roleId=$roleId)"

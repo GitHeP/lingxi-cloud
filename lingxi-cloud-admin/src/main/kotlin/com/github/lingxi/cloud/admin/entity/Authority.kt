@@ -1,7 +1,7 @@
 package com.github.lingxi.cloud.admin.entity
 
-import com.github.lingxi.cloud.admin.const.DeletedEnum
 import com.github.lingxi.cloud.admin.entity.Authority.Companion.AUTHORITY_TABLE_NAME
+import javax.persistence.Column
 import javax.persistence.Table
 
 /**
@@ -12,17 +12,16 @@ import javax.persistence.Table
 
 @javax.persistence.Entity
 @Table(name = AUTHORITY_TABLE_NAME)
-class Authority(id: Long , createTime: Long , modifyTime: Long
-                , deleted: DeletedEnum , private var resource: String
-                , private var action: String) : Entity(id , createTime , modifyTime , deleted) {
+class Authority : Entity() {
 
-    companion object {
-        const val AUTHORITY_TABLE_NAME = "authority"
-    }
-
-    constructor()
+    @Column private lateinit var resource: String
+    @Column private lateinit var action: String
 
     override fun toString(): String {
         return "${super.toString()} Authority(resource='$resource', action='$action')"
+    }
+
+    companion object {
+        const val AUTHORITY_TABLE_NAME = "authority"
     }
 }
