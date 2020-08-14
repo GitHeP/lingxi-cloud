@@ -1,6 +1,5 @@
 package com.github.lingxi.cloud.admin.entity
 
-import com.github.lingxi.cloud.admin.const.DeletedEnum
 import com.github.lingxi.cloud.admin.const.EnabledEnum
 import com.github.lingxi.cloud.admin.entity.User.Companion.USER_TABLE_NAME
 import com.github.lingxi.cloud.admin.entity.UserRoleLink.Companion.USER_ROLE_LINK_TABLE_NAME
@@ -18,12 +17,12 @@ import javax.persistence.Table
 
 @javax.persistence.Entity
 @Table(name = USER_TABLE_NAME)
-class User(@Column var username: String, @Column var email: String, @Column var password:String, @Column var enabled: EnabledEnum
-           , deleted: DeletedEnum, id: Long, createTime: Long, modifyTime: Long) : Entity(id , createTime , modifyTime , deleted) {
+class User : Entity() {
 
-    companion object {
-        const val USER_TABLE_NAME = "`user`"
-    }
+    @Column private lateinit var username: String
+    @Column private lateinit var email: String
+    @Column private lateinit var password:String
+    @Column private lateinit var enabled: EnabledEnum
 
     @ManyToMany
     @JoinTable(name = USER_ROLE_LINK_TABLE_NAME ,
@@ -31,11 +30,11 @@ class User(@Column var username: String, @Column var email: String, @Column var 
             inverseJoinColumns = [JoinColumn(name = "roleId")])
     private lateinit var roles: List<Role>
 
-    constructor()
-
     override fun toString(): String {
         return "${super.toString()} User(username='$username', email='$email', password='$password', enabled=$enabled, roles=$roles)"
     }
 
-
+    companion object {
+        const val USER_TABLE_NAME = "`user`"
+    }
 }

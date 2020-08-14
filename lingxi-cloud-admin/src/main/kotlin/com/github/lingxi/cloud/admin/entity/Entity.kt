@@ -13,7 +13,7 @@ import javax.persistence.MappedSuperclass
  */
 
 @MappedSuperclass
-abstract class Entity {
+abstract class Entity() {
 
     @Id
     private var id:Long? = null

@@ -13,17 +13,16 @@ import javax.persistence.Table
 
 @javax.persistence.Entity
 @Table(name = USER_ROLE_LINK_TABLE_NAME)
-class UserRoleLink(id: Long, createTime: Long, modifyTime: Long, deleted: DeletedEnum
-                   , @Column private var userId: Long, @Column private var roleId: Long) : Entity(id , createTime , modifyTime , deleted) {
+class UserRoleLink : Entity() {
 
-
-    companion object {
-        const val USER_ROLE_LINK_TABLE_NAME = "user_role_link"
-    }
-
-    constructor()
+    @Column private var userId: Long
+    @Column private var roleId: Long
 
     override fun toString(): String {
         return "${super.toString()} UserRoleLink(userId=$userId, roleId=$roleId)"
+    }
+
+    companion object {
+        const val USER_ROLE_LINK_TABLE_NAME = "user_role_link"
     }
 }
