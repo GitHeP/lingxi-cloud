@@ -21,7 +21,6 @@
         <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
         <spring-boot-admin.version>2.3.0</spring-boot-admin.version>
-        <spring-data-releasetrain.version>Neumann-SR3</spring-data-releasetrain.version>
     </properties>
 
     <dependencies>
