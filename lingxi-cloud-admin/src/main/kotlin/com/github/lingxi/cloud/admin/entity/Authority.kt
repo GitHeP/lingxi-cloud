@@ -16,9 +16,12 @@ class Authority : Entity() {
 
     @Column private lateinit var resource: String
     @Column private lateinit var action: String
+    @Column private var parentId: Long? = null
+    @Column private lateinit var icon: String
+    @Column private var order: Int? = null
 
     override fun toString(): String {
-        return "${super.toString()} Authority(resource='$resource', action='$action')"
+        return "${super.toString()} Authority(resource='$resource', action='$action', parentId=$parentId, icon='$icon' , order='$order')"
     }
 
     companion object {

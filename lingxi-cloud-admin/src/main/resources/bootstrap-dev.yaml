@@ -25,4 +25,3 @@ spring:
     schema: classpath:META-INF/schema/lingxi-cloud-admin-mysql.sql
     continue-on-error: true
     initialization-mode: always
-

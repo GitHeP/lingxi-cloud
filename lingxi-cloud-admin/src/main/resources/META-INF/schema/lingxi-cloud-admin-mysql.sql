@@ -40,9 +40,15 @@ create table if not exists `role` (
 create table if not exists `authority` (
     id bigint unsigned not null auto_increment primary key comment '自增主键' ,
 
-    resource varchar(500) not null default '' comment '资源' ,
+    parent_id bigint unsigned not null comment '父节点id' ,
 
-    action varchar(100) not null default '' comment '' ,
+    icon varchar(50) not null default '' comment '图标名称' ,
+
+    resource varchar(500) not null comment '资源' ,
+
+    action varchar(100) not null comment '' ,
+
+    `order` int unsigned not null default 0 comment '顺序' ,
 
     deleted tinyint unsigned not null default 1 comment '是否删除 , 0 - 删除 , 1 - 未删除' ,
 
