@@ -4,6 +4,7 @@ import com.github.lingxi.cloud.admin.const.EnabledEnum
 import com.github.lingxi.cloud.admin.entity.User.Companion.USER_TABLE_NAME
 import com.github.lingxi.cloud.admin.entity.UserRoleLink.Companion.USER_ROLE_LINK_TABLE_NAME
 import javax.persistence.Column
+import javax.persistence.FetchType
 import javax.persistence.JoinColumn
 import javax.persistence.JoinTable
 import javax.persistence.ManyToMany
@@ -24,7 +25,7 @@ class User : Entity() {
     @Column private lateinit var password:String
     @Column private lateinit var enabled: EnabledEnum
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = USER_ROLE_LINK_TABLE_NAME ,
             joinColumns = [JoinColumn(name = "userId")] ,
             inverseJoinColumns = [JoinColumn(name = "roleId")])

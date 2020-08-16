@@ -1,7 +1,6 @@
 package com.github.lingxi.cloud.admin.entity
 
 import com.github.lingxi.cloud.admin.const.DeletedEnum
-import org.hibernate.annotations.ColumnDefault
 import javax.persistence.Column
 import javax.persistence.Id
 import javax.persistence.MappedSuperclass
@@ -27,7 +26,7 @@ abstract class Entity() {
     @Column(nullable = false)
     private var deleted:DeletedEnum? = null
 
-    constructor(id: Long , createTime:Long , modifyTime:Long , deleted: DeletedEnum) {
+    constructor(id: Long , createTime:Long , modifyTime:Long , deleted: DeletedEnum) : this() {
         this.id = id
         this.createTime = createTime
         this.modifyTime = modifyTime

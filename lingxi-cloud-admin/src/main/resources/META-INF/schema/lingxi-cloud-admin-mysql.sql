@@ -8,7 +8,7 @@ create table if not exists `user` (
 
     email varchar(50) not null default '' comment '邮件地址' ,
 
-    password varchar(300) not null default '' comment '登录密码' ,
+    password varchar(150) not null default '' comment '登录密码' ,
 
     enabled tinyint unsigned not null default 1 comment '是否启用, 0 - 未启用 , 1 - 启用' ,
 
