@@ -1,6 +1,11 @@
 package com.github.lingxi.cloud.admin.entity
 
 import com.github.lingxi.cloud.admin.entity.Authority.Companion.AUTHORITY_TABLE_NAME
+import com.github.lingxi.cloud.admin.pojo.dto.AuthorityListDTO
+import org.mapstruct.IterableMapping
+import org.mapstruct.Mapper
+import org.mapstruct.Mapping
+import org.mapstruct.Mappings
 import javax.persistence.Column
 import javax.persistence.Table
 
@@ -27,4 +32,19 @@ class Authority : Entity() {
     companion object {
         const val AUTHORITY_TABLE_NAME = "authority"
     }
+}
+
+@Mapper(componentModel = "spring")
+interface AuthorityMapper {
+
+    @Mappings(value = [
+        Mapping(source = "createTime" , target = "createTime" , dateFormat = "yyyy-MM-dd HH:mm:ss")
+        ,Mapping(source = "modifyTime" , target = "modifyTime" , dateFormat = "yyyy-MM-dd HH:mm:ss")])
+    fun authorityToAuthorityListDTO(authority: Authority): AuthorityListDTO
+
+    @Mappings(value = [
+        Mapping(source = "createTime" , target = "createTime" , dateFormat = "yyyy-MM-dd HH:mm:ss")
+        ,Mapping(source = "modifyTime" , target = "modifyTime" , dateFormat = "yyyy-MM-dd HH:mm:ss")])
+    @IterableMapping
+    fun authorityListToAuthorityListDTOList(authorityList: List<Authority>): List<AuthorityListDTO>
 }

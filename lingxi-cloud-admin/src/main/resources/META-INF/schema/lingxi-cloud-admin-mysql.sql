@@ -40,13 +40,13 @@ create table if not exists `role` (
 create table if not exists `authority` (
     id bigint unsigned not null auto_increment primary key comment '自增主键' ,
 
-    parent_id bigint unsigned not null comment '父节点id' ,
+    parent_id bigint unsigned not null default 0 comment '父节点id , 0 表示没有父节点' ,
 
     icon varchar(50) not null default '' comment '图标名称' ,
 
     resource varchar(500) not null comment '资源' ,
 
-    action varchar(100) not null comment '' ,
+    `action` varchar(100) not null comment '' ,
 
     `order` int unsigned not null default 0 comment '顺序' ,
 
@@ -89,6 +89,6 @@ create table if not exists `role_authority_link` (
     unique key uk_roleid_authorityid(`role_id` , `authority_id`)
 ) engine = InnoDB charset = utf8mb4 collate = utf8mb4_bin comment '角色权限链接表' ;
 
-insert into `user`(username , email ,password  , create_time) values('lingxi' , 'lingxi@gmail.com' , '111' , NOW()) ;
-insert into role (nickname , code , create_time) values ('超级管理员' , 'Super_Admin' , CURRENT_TIMESTAMP()) ;
-insert into user_role_link (user_id , role_id , create_time) values(1 , 1 , CURRENT_TIMESTAMP()) ;
+insert into `user`(username , email ,password  , create_time) values('lingxi' , 'anonymou_s@163.com' , '111' , unix_timestamp(current_timestamp())) ;
+insert into role (nickname , code , create_time) values ('超级管理员' , 'Super_Admin' , unix_timestamp(current_timestamp())) ;
+insert into user_role_link (user_id , role_id , create_time) values(1 , 1 , unix_timestamp(current_timestamp())) ;
