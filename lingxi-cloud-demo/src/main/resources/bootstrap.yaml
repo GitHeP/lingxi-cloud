@@ -1,17 +1,31 @@
+logging:
+  level:
+    root: info
+
 spring:
   application:
     name: lingxi-cloud-demo
-  cloud:
-    nacos:
-      server-addr: 127.0.0.1:8848
-      config:
-        username: nacos
-        password: nacos
-        server-addr: ${spring.cloud.nacos.server-addr}
-        file-extension: yaml
-      discovery:
-        server-addr: ${spring.cloud.nacos.server-addr}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=Asia/Shanghai
+    username: root
+    password: root
 
-logging:
-  level:
-    root: debug
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+
+#  cloud:
+#    nacos:
+#      server-addr: 127.0.0.1:8848
+#      config:
+#        username: nacos
+#        password: nacos
+#        server-addr: ${spring.cloud.nacos.server-addr}
+#        file-extension: yaml
+#      discovery:
+#        server-addr: ${spring.cloud.nacos.server-addr}
+
+
