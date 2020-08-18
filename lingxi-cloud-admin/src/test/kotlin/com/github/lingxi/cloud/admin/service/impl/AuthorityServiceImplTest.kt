@@ -2,6 +2,7 @@ package com.github.lingxi.cloud.admin.service.impl
 
 import com.github.lingxi.cloud.admin.LingXiCloudAdminApplicationTests
 import com.github.lingxi.cloud.admin.service.AuthorityService
+import com.github.lingxi.cloud.admin.service.query.PageQuery
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -21,7 +22,7 @@ internal class AuthorityServiceImplTest : LingXiCloudAdminApplicationTests() {
 
     @Test
     fun listPaging() {
-        var page = service.listPaging(PageRequest.of(0 , 20))
+        var page = service.listPaging(PageQuery(0 , 20))
         println(page)
     }
 }
