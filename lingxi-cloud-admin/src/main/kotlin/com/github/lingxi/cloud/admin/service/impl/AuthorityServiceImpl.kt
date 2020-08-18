@@ -2,7 +2,7 @@ package com.github.lingxi.cloud.admin.service.impl
 
 import com.github.lingxi.cloud.admin.dao.AuthorityDAO
 import com.github.lingxi.cloud.admin.entity.AuthorityMapper
-import com.github.lingxi.cloud.admin.pojo.dto.AuthorityListDTO
+import com.github.lingxi.cloud.admin.service.dto.AuthorityListDTO
 import com.github.lingxi.cloud.admin.service.AuthorityService
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageImpl

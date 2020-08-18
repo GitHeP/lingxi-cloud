@@ -1,8 +1,7 @@
 package com.github.lingxi.cloud.admin.entity
 
 import com.github.lingxi.cloud.admin.entity.Authority.Companion.AUTHORITY_TABLE_NAME
-import com.github.lingxi.cloud.admin.pojo.dto.AuthorityListDTO
-import org.mapstruct.IterableMapping
+import com.github.lingxi.cloud.admin.service.dto.AuthorityListDTO
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
 import org.mapstruct.Mappings
@@ -42,9 +41,6 @@ interface AuthorityMapper {
         ,Mapping(source = "modifyTime" , target = "modifyTime" , dateFormat = "yyyy-MM-dd HH:mm:ss")])
     fun authorityToAuthorityListDTO(authority: Authority): AuthorityListDTO
 
-    @Mappings(value = [
-        Mapping(source = "createTime" , target = "createTime" , dateFormat = "yyyy-MM-dd HH:mm:ss")
-        ,Mapping(source = "modifyTime" , target = "modifyTime" , dateFormat = "yyyy-MM-dd HH:mm:ss")])
-    @IterableMapping
-    fun authorityListToAuthorityListDTOList(authorityList: List<Authority>): List<AuthorityListDTO>
+
+    fun authoritysToAuthorityListDTOs(authorityList: List<Authority>): List<AuthorityListDTO>
 }

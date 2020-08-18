@@ -1,4 +1,4 @@
-package com.github.lingxi.cloud.admin.pojo.dto
+package com.github.lingxi.cloud.admin.service.dto
 
 /**
  *

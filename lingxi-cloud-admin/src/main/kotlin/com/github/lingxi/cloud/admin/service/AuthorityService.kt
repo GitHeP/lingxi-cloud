@@ -1,6 +1,6 @@
 package com.github.lingxi.cloud.admin.service
 
-import com.github.lingxi.cloud.admin.pojo.dto.AuthorityListDTO
+import com.github.lingxi.cloud.admin.service.dto.AuthorityListDTO
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 
