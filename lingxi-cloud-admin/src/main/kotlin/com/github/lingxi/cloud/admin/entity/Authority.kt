@@ -1,7 +1,7 @@
 package com.github.lingxi.cloud.admin.entity
 
 import com.github.lingxi.cloud.admin.entity.Authority.Companion.AUTHORITY_TABLE_NAME
-import com.github.lingxi.cloud.admin.service.dto.AuthorityListDTO
+import com.github.lingxi.cloud.admin.service.dto.AuthorityDTO
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
 import org.mapstruct.Mappings
@@ -18,11 +18,11 @@ import javax.persistence.Table
 @Table(name = AUTHORITY_TABLE_NAME)
 class Authority : Entity() {
 
-    @Column private lateinit var resource: String
-    @Column private lateinit var action: String
-    @Column private var parentId: Long? = null
-    @Column private lateinit var icon: String
-    @Column private var order: Int? = null
+    @Column lateinit var resource: String
+    @Column lateinit var action: String
+    @Column var parentId: Long? = null
+    @Column lateinit var icon: String
+    @Column var order: Int? = null
 
     override fun toString(): String {
         return "${super.toString()} Authority(resource='$resource', action='$action', parentId=$parentId, icon='$icon' , order='$order')"
@@ -37,10 +37,10 @@ class Authority : Entity() {
 interface AuthorityMapper {
 
     @Mappings(value = [
-        Mapping(source = "createTime" , target = "createTime" , dateFormat = "yyyy-MM-dd HH:mm:ss")
-        ,Mapping(source = "modifyTime" , target = "modifyTime" , dateFormat = "yyyy-MM-dd HH:mm:ss")])
-    fun authorityToAuthorityListDTO(authority: Authority): AuthorityListDTO
+        Mapping(target = "createTime" , expression = "java( new org.joda.time.DateTime(s.getCreateTime()).toString(\"yyyy-MM-dd HH:mm:ss\") )")
+        , Mapping(target = "modifyTime" , expression = "java( new org.joda.time.DateTime(s.getModifyTime()).toString(\"yyyy-MM-dd HH:mm:ss\") )")])
+    fun authorityToAuthorityDTO(s: Authority): AuthorityDTO
 
 
-    fun authoritysToAuthorityListDTOs(authorityList: List<Authority>): List<AuthorityListDTO>
+    fun authoritysToAuthorityDTOs(s: List<Authority>): List<AuthorityDTO>
 }

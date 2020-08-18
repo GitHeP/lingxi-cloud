@@ -1,6 +1,6 @@
 package com.github.lingxi.cloud.admin.service
 
-import com.github.lingxi.cloud.admin.service.dto.AuthorityListDTO
+import com.github.lingxi.cloud.admin.service.dto.AuthorityDTO
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 
@@ -11,5 +11,5 @@ import org.springframework.data.domain.Pageable
  */
 interface AuthorityService {
 
-    fun listPaging(page: Pageable): Page<AuthorityListDTO>
+    fun listPaging(page: Pageable): Page<AuthorityDTO>
 }

@@ -14,17 +14,13 @@ import javax.persistence.MappedSuperclass
 @MappedSuperclass
 abstract class Entity() {
 
-    @Id
-    private var id:Long? = null
+    @Id var id:Long? = null
 
-    @Column(nullable = false)
-    private var createTime:Long? = null
+    @Column(nullable = false) var createTime:Long? = null
 
-    @Column(nullable = false)
-    private var modifyTime:Long? = null
+    @Column(nullable = false) var modifyTime:Long? = null
 
-    @Column(nullable = false)
-    private var deleted:DeletedEnum? = null
+    @Column(nullable = false) lateinit var deleted:DeletedEnum
 
     constructor(id: Long , createTime:Long , modifyTime:Long , deleted: DeletedEnum) : this() {
         this.id = id
@@ -37,3 +33,4 @@ abstract class Entity() {
         return "Entity(id=$id, createTime=$createTime, modifyTime=$modifyTime, deleted=$deleted)"
     }
 }
+
