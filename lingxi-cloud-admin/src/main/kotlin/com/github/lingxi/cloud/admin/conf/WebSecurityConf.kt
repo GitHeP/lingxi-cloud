@@ -19,6 +19,7 @@ class WebSecurityConf {
         return http.apply {
             this.authorizeExchange().anyExchange().permitAll()
             this.headers().frameOptions().disable()
+            this.csrf().disable()
         }.build()
     }
 }
