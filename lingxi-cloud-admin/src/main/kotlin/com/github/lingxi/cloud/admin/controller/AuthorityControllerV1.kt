@@ -18,8 +18,8 @@ class AuthorityControllerV1 {
 
     @Inject lateinit var authorityService: AuthorityService
 
-    @PostMapping("/list")
-    fun listPagingAuthority(@RequestBody pQuery: PageQuery): Page<AuthorityDTO> {
+    @GetMapping("/list")
+    fun listPagingAuthority(pQuery: PageQuery): Page<AuthorityDTO> {
         return authorityService.listPaging(pQuery)
     }
 }

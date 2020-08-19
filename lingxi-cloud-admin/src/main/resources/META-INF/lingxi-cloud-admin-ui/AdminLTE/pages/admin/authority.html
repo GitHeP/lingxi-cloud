@@ -131,12 +131,13 @@
 
     $('#authority-table').DataTable({
       "paging": true,
-      "lengthChange": true,
+      /*"lengthChange": true,
       "searching": false,
       "ordering": true,
       "info": true,
       "autoWidth": false,
-      "responsive": true,
+      "responsive": true,*/
+      serverSide: true ,
       language: {
         url: "../../plugins/datatables-i18n/Chinese.json"
       }
