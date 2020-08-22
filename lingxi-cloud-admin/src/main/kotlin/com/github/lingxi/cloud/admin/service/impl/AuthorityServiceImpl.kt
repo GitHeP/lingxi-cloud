@@ -1,14 +1,17 @@
 package com.github.lingxi.cloud.admin.service.impl
 
 import com.github.lingxi.cloud.admin.dao.AuthorityDAO
+import com.github.lingxi.cloud.admin.entity.Authority
 import com.github.lingxi.cloud.admin.entity.AuthorityMapper
 import com.github.lingxi.cloud.admin.service.dto.AuthorityDTO
 import com.github.lingxi.cloud.admin.service.AuthorityService
-import com.github.lingxi.cloud.admin.service.query.PageQuery
-import com.github.lingxi.cloud.admin.service.query.PageQueryMapper
+import com.github.lingxi.cloud.admin.service.query.DataTablesPageQuery
+import com.github.lingxi.cloud.admin.service.query.DataTablesPageQueryMapper
+import org.springframework.beans.BeanUtils
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageImpl
-import org.springframework.data.domain.Pageable
+import org.springframework.data.jpa.datatables.mapping.DataTablesInput
+import org.springframework.data.jpa.datatables.mapping.DataTablesOutput
 import org.springframework.stereotype.Service
 import javax.inject.Inject
 
@@ -25,15 +28,17 @@ class AuthorityServiceImpl : AuthorityService {
     private lateinit var entityMapper: AuthorityMapper
 
     @Inject
-    private lateinit var pageQueryMapper: PageQueryMapper
+    private lateinit var pageQueryMapper: DataTablesPageQueryMapper
 
     @Inject
     private lateinit var authorityDAO: AuthorityDAO
 
-    override fun listPaging(page: PageQuery): Page<AuthorityDTO> {
+    override fun listPaging(datatable: DataTablesInput): DataTablesOutput<AuthorityDTO> {
 
-        val resultPage = authorityDAO.findAll(pageQueryMapper.pageQueryToPageRequest(page))
-        val list = entityMapper.authoritysToAuthorityDTOs(resultPage.content)
-        return PageImpl<AuthorityDTO>(list , resultPage.pageable , resultPage.totalElements)
+        val dataTablesOutput = authorityDAO.findAll(datatable)
+        return DataTablesOutput<AuthorityDTO>().apply {
+            BeanUtils.copyProperties(dataTablesOutput , this)
+            data = entityMapper.authoritysToAuthorityDTOs(dataTablesOutput.data)
+        }
     }
 }

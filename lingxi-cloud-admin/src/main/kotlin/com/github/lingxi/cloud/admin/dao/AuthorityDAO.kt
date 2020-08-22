@@ -1,7 +1,7 @@
 package com.github.lingxi.cloud.admin.dao
 
 import com.github.lingxi.cloud.admin.entity.Authority
-import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.datatables.repository.DataTablesRepository
 import org.springframework.stereotype.Repository
 
 /**
@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository
  */
 
 @Repository
-interface AuthorityDAO : JpaRepository<Authority , Long> {
+interface AuthorityDAO : DataTablesRepository<Authority, Long> {
 }

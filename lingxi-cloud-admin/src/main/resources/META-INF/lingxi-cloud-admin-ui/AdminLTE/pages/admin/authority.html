@@ -47,48 +47,6 @@
             <!-- /.card-header -->
             <div class="card-body">
               <table id="authority-table" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th style="width: 10px">#</th>
-                  <th>ICON</th>
-                  <th>Resource</th>
-                  <th>Action</th>
-                  <th>顺序</th>
-                  <th>创建时间</th>
-                  <th>修改时间</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>1.</td>
-                  <td>XXX</td>
-                  <td>Other browsers</td>
-                  <td>All others</td>
-                  <td>1</td>
-                  <td>B</td>
-                  <td>U</td>
-                </tr>
-                <tr>
-                  <td>2.</td>
-                  <td>VVVV</td>
-                  <td>Other browsers</td>
-                  <td>All others</td>
-                  <td>2</td>
-                  <td>B</td>
-                  <td>U</td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                  <th style="width: 10px">#</th>
-                  <th>ICON</th>
-                  <th>Resource</th>
-                  <th>Action</th>
-                  <th>顺序</th>
-                  <th>创建时间</th>
-                  <th>修改时间</th>
-                </tr>
-                </tfoot>
               </table>
             </div>
             <!-- /.card-body -->
@@ -130,15 +88,49 @@
   $(function () {
 
     $('#authority-table').DataTable({
+      "ajax": {
+        'contentType': 'application/json',
+        "url": "/authority/v1/list",
+        "type": "post",
+        "data": function(d) {
+          return JSON.stringify(d);
+        } ,
+        // dataFilter: function (json) {
+        //   return json.data;
+        // },
+      } ,
+
+      /*
+
+      , render:function(data,type,row,meta) {
+            return meta.row + 1 + meta.settings._iDisplayStart;
+        }
+      * */
+      columns: [
+        { title: '#' , data: "undefined" , className: 'text-center whiteSpace'},
+        { title: 'id' , data: "id" , visible: false },
+        { title: 'parentId' , data: "parentId" , "visible": false },
+        { title: '图标' , data: "icon" },
+        { title: '资源' , data: "resource" },
+        { title: 'Action' , data: "action" },
+        { title: '顺序' , data: "order" },
+        { title: '创建时间' , data: "createTime" },
+        { title: '修改时间' , data: "modifyTime" }
+      ] ,
+      columnDefs: [ {
+        "orderable": false,
+        "targets": [0 , 2 , 3, 4 , 5]
+      }] ,
+      order: [[ 1, "desc" ]] ,
       "paging": true,
-      /*"lengthChange": true,
+      "lengthChange": true,
       "searching": false,
       "ordering": true,
       "info": true,
       "autoWidth": false,
-      "responsive": true,*/
-      serverSide: true ,
-      language: {
+      "responsive": true,
+      "serverSide": true ,
+      "language"  : {
         url: "../../plugins/datatables-i18n/Chinese.json"
       }
     });
