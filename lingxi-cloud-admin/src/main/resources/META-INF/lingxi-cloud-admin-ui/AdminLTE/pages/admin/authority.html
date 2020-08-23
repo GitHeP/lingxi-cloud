@@ -70,6 +70,73 @@
 </div>
 <!-- ./wrapper -->
 
+<div id="editModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">权限编辑</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="card-body">
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-2 col-form-label">资源</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Action</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label>Select</label>
+              <select class="form-control row">
+                <option>option 1</option>
+                <option>option 2</option>
+                <option>option 3</option>
+                <option>option 4</option>
+                <option>option 5</option>
+              </select>
+            </div>
+
+            <div class="form-group row">
+              <label for="dnakjndka" class="col-sm-2 col-form-label">父节点</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="dnakjndka" placeholder="Password">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="inputPassworsda" class="col-sm-2 col-form-label">顺序</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassworsda" placeholder="Password">
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+            <button type="submit" class="btn btn-info">Sign in</button>
+            <button type="submit" class="btn btn-default float-right">Cancel</button>
+          </div>
+          <!-- /.card-footer -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -117,14 +184,20 @@
         { title: 'Action' , data: "action" },
         { title: '顺序' , data: "order" },
         { title: '创建时间' , data: "createTime" },
-        { title: '修改时间' , data: "modifyTime" }
+        { title: '修改时间' , data: "modifyTime" } ,
+        { title: '操作' , data: null , searchable: false , orderable: false , className: 'text-center whiteSpace' , render: function(data , type , row , meta) {
+          return "<div class=\"btn-group btn-group-toggle\" data-toggle=\"buttons\">\n" +
+            "<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#editModal\" onclick='editAuthority(" + meta.row +")' >编辑</button>"  +
+            "<button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#editModal\">删除</button>"  +
+          "</div>";
+        }} ,
       ] ,
       columnDefs: [ {
         "orderable": false,
         "targets": [0 , 1 , 2 , 3, 4 , 5]
       } ,
         {
-          "targets":[0],
+          "targets":[0 , 9],
           "searchable": false
         }] ,
       order: [[ 1, "desc" ]] ,
@@ -141,6 +214,12 @@
       }
     });
   });
+
+  function editAuthority(row) {
+    var rowData = $('#authority-table').DataTable().rows(row).data()[0];
+    // alert(JSON.stringify(rowData))
+  }
+
 </script>
 </body>
 </html>
