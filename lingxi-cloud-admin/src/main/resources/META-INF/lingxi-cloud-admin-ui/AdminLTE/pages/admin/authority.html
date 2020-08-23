@@ -107,7 +107,9 @@
         }
       * */
       columns: [
-        { title: '#' , data: "undefined" , className: 'text-center whiteSpace'},
+        { title: '#' , data: null , searchable: false , className: 'text-center whiteSpace' , render:function(data,type,row,meta) {
+            return meta.row + 1 + meta.settings._iDisplayStart;
+        }},
         { title: 'id' , data: "id" , visible: false },
         { title: 'parentId' , data: "parentId" , "visible": false },
         { title: '图标' , data: "icon" },
@@ -119,8 +121,12 @@
       ] ,
       columnDefs: [ {
         "orderable": false,
-        "targets": [0 , 2 , 3, 4 , 5]
-      }] ,
+        "targets": [0 , 1 , 2 , 3, 4 , 5]
+      } ,
+        {
+          "targets":[0],
+          "searchable": false
+        }] ,
       order: [[ 1, "desc" ]] ,
       "paging": true,
       "lengthChange": true,
