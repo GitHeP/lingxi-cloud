@@ -15,6 +15,11 @@
     <description>Demo project for Spring Boot</description>
 
     <dependencies>
+        <dependency>
+            <groupId>com.github</groupId>
+            <artifactId>hammer-all</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>com.github.darrachequesne</groupId>

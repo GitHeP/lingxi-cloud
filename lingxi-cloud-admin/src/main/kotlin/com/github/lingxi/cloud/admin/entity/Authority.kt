@@ -1,6 +1,8 @@
 package com.github.lingxi.cloud.admin.entity
 
 import com.github.lingxi.cloud.admin.entity.Authority.Companion.AUTHORITY_TABLE_NAME
+import com.github.lingxi.cloud.admin.service.cmd.ModifyAuthorityCmd
+import com.github.lingxi.cloud.admin.service.cmd.SaveAuthorityCmd
 import com.github.lingxi.cloud.admin.service.dto.AuthorityDTO
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
@@ -41,6 +43,13 @@ interface AuthorityMapper {
         , Mapping(target = "modifyTime" , expression = "java( new org.joda.time.DateTime(s.getModifyTime()).toString(\"yyyy-MM-dd HH:mm:ss\") )")])
     fun authorityToAuthorityDTO(s: Authority): AuthorityDTO
 
-
     fun authoritysToAuthorityDTOs(s: List<Authority>): List<AuthorityDTO>
+
+    @Mappings(value = [
+        Mapping(target = "modifyTime" , expression = "java( System.currentTimeMillis() )")])
+    fun modifyAuthorityCmdToAuthority(s: ModifyAuthorityCmd): Authority
+
+    @Mappings(value = [
+        Mapping(target = "createTime" , expression = "java( System.currentTimeMillis() )")])
+    fun saveAuthorityCmdToAuthority(s: SaveAuthorityCmd): Authority
 }

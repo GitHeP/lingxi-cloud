@@ -25,7 +25,7 @@ class AuthorityControllerV1 {
     @Inject lateinit var pageMapper: PageMapper
 
     @PostMapping("/list")
-    fun listPagingAuthority(@RequestBody datatable: DataTablesInput): DataTablesOutput<out Any> {
-        return authorityService.listPaging(datatable)
+    fun listPagingAuthority(@RequestBody datatable: DataTablesInput): DataTablesOutput<AuthorityDTO>? {
+        return authorityService.listPaging(datatable).data()
     }
 }
